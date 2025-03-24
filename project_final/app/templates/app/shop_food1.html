@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+            background-color: #f5f5f7;
+        }
+    .container {
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid red; */
+        margin: 10px;
+        align-items: center;
+
+    }
+    .head_detail {
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid red; */
+        width: 1100px;
+        height: 70px;
+    }
+    .head_title {
+        font-size: 24px;
+        width: 180px;
+        padding: 7px;
+        text-align: center;
+        border: 1px solid red;
+        box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+        border-radius: 0.3rem;
+        background-color: #F94D4D;
+        margin-bottom: 10px;
+    }
+    .line {
+        border-bottom: 1px solid #212122;
+    }
+   .container-area {
+            display: grid;
+            padding: 0.5rem;
+            margin: 0.5rem;
+            grid-template-columns: repeat(4,1fr);
+            grid-gap: 10px;
+            width: 1100px;
+            margin: 0 auto;
+            margin-top: 1px;
+            /* border: 1px solid red; */
+            margin-bottom: 30px;
+
+        }
+        .box-container {
+            display: flex;
+            /* border: 1px solid blue; */
+            width: 1000px;
+        }
+        .boxlistfood {
+            /* border: 1px solid blue; */
+            margin-top: 20px;
+            width: 220px;
+            height: 200px;
+            box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+            margin-bottom: 20px;
+
+            
+        }
+        .boxlistfood div {
+
+            text-align: center;
+            margin-bottom: 10px;
+            
+        }
+        .listitem a {
+            text-decoration: none;
+            color: black;
+        }
+        .image-food {
+            width: 100% ;
+            border-radius: 1rem;
+            height: 110px;
+            margin-bottom: 20px;
+
+
+        }
+        .image-food img {
+            height: 130px; /* Set the height of the image container */
+            width: 99.5%; /* Set the width of the image container */
+
+            
+
+        }
+        .detail_food {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 10px;
+            margin-bottom: 0;
+            /* border: 1px solid red; */
+        }
+        .food-quantity {
+            margin-right: 10px;
+        }
+        .box-detail {
+            display: flex;
+            flex-direction: column;
+            border-radius: 0.3rem;
+            height: 70px;
+            position: relative;
+            margin-top: 20px;
+            /* border: 1px solid red; */
+            background-color: #FDFDFD;
+
+        }
+        .name {
+            margin-top: 10px;
+        }
+        .cen_num {
+            width: 100px;
+
+        }
+        .box-submit {
+        display: flex;
+        /* border: 1px solid tomato; */
+        width: 250px;
+        height: 70px;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+        .button-btn,.cancel-btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+        }
+        .button-btn {
+                border: 1px solid #3498db;
+                background-color: #3498db;
+            }
+
+        .cancel-btn {    
+                border: 1px solid #F94D4D;
+                background-color: #F94D4D;
+
+            }
+            .box_message_to_user {
+            display: flex;
+            width: 100%;
+            height: 70px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px;
+        }
+        .box_to_user {
+            border: 1px solid #333333;
+            box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            width: 60%;
+            height: 50px;
+            border-radius: 0.2rem;
+        }
+</style>
+<body>
+  {% include 'app/navbar.html' %}
+{% if food %}
+<div class="container">
+    <div class="head_detail">
+        <div class="head_title">สั่งจองรูปแบบถุง</div>
+        <div class="line"></div>
+    </div>
+
+    <div class="container-area">
+        
+            {%for f in food %}
+                {{modify}}
+                {%if f.food.options != 'notchoose'%}
+                    <div class="listitem">
+
+                            <div class="boxlistfood">
+                                {%if f.food.image %}
+                                <div class="image-food">
+                                    <img src="{{f.food.image.url}}" alt="food-image">
+                                </div>
+                                {%endif%}
+
+                                <div class="box-detail">
+                                    
+                                    <div class="name">{{f.food.name}}</div> 
+                                    <div class="detail_food">
+                                        <div class="food-price">{{f.food.price}} {{f.food.unit}}</div>
+                                        <div class="food-quantity">คงเหลือ : {{f.quantity}}</div>
+                                    </div>
+                                    <form class="add-to-cart-form" method="post" action="{% url 'add_to_cart' 'type1' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ f.food.id }}">
+                                    <div class="quantity-control">
+                                        <button class="left_de" type="button" onclick="decrementQuantity('{{ f.id }}')">-</button>
+                                        <input class="cen_num" type="number" name="quantity" id="id_quantity_{{ f.id }}" value="0" min="0">
+                                        <button class="right_in" type="button" onclick="incrementQuantity('{{ f.id }}')">+</button>
+                                    </div>
+                                    </form>
+                                </div>
+                                
+                            </div>
+
+                    </div>
+                    {%endif%}
+
+            {%endfor%}
+
+    </div>
+    <div class="box-submit">
+        <button class="button-btn" type="button" onclick="submitForms()">จองอาหาร</button>
+        <a class="cancel-btn" href="/view-cart/">cancel</a>
+    </div>
+</div>
+{%endif%}
+    
+{% if food_item %}
+<div class="container">
+    <div class="head_detail">
+        <div class="head_title">สั่งจองรูปแบบถุง</div>
+        <div class="line"></div>
+    </div>
+    <div class="container-area">
+        {% for f, i,q in food_item %}
+            {% if f.food.options != 'notchoose' %}
+                <div class="listitem">
+                    <div class="boxlistfood">
+                        {% if f.food.image %}
+                            <div class="image-food">
+                                <img src="{{ f.food.image.url }}" alt="food-image">
+                            </div>
+                        {% endif %}
+                        <div class="box-detail">
+                            <div class="name">{{ f.food.name }}</div> 
+                            <div class="detail_food">
+                                <div class="food-price">{{ f.food.price }} {{ f.food.unit }}</div>
+                                <div class="food-quantity">คงเหลือ : {{q}}</div>
+                            </div>
+                            <form class="add-to-cart-form" method="post" action="{% url 'add_to_cart' 'type1' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ f.food.id }}">
+                                <div class="quantity-control">
+                                    <button class="left_de" type="button" onclick="decrementQuantity('{{ f.id }}')">-</button>
+                                    <input class="cen_num" type="number" name="quantity" id="id_quantity_{{ f.id }}" value="{% if i.quantity %}{{ i.quantity }}{% else %}0{% endif %}" min="0">
+                                    <button class="right_in" type="button" onclick="incrementQuantity('{{ f.id }}')">+</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="box-submit">
+        <button class="button-btn" type="button" onclick="submitForms_modify()">จองอาหาร</button>
+        <a class="cancel-btn" href="/view-cart/">cancel</a>
+    </div>
+</div>
+{% endif %}
+
+{% if not food and not food_item  %}
+<div class="box_message_to_user">
+    <div class="box_to_user">
+        ขออภัยค่ะ วันนี้ไม่มีเมนูอาหารที่สามารถสั่งจองได้ค่ะ กรุณากลับมาใช้บริการในโอกาสหน้าค่ะ
+    </div>
+</div>
+{% endif %}
+
+<script>
+    const typeValue = "type1";
+    // const originURL = "https://035e-27-145-120-155.ngrok-free.app"; 
+    function submitForms() {
+        const forms = document.querySelectorAll('.add-to-cart-form');
+        const formData = new FormData();
+
+        forms.forEach(form => {
+            const quantityInput = form.querySelector('input[name="quantity"]');
+            const quantityValue = parseInt(quantityInput.value);
+
+            if (quantityValue > 0) {
+                const formInputs = form.querySelectorAll('input');
+                formInputs.forEach(input => {
+                    formData.append(input.name, input.value);
+                });
+            }
+        });
+
+        if (formData.has('quantity')) {
+            fetch('/add-to-cart/' + typeValue + '/', {
+                method: 'POST',
+                body: formData,
+                // headers: {
+                //     'Origin': originURL
+                // }
+            })
+            .then(response => {
+                if (response.ok) {
+                    const homeURL = "{% url 'view_cart' %}";
+                    window.location.href = homeURL;
+                }
+            });
+        } else {
+            alert('กรุณาเลือกเมนูอาหารที่ท่านต้องการ');}
+    }
+
+    const modifyValue = "{{modify}}";
+
+    function submitForms_modify() {
+        const forms = document.querySelectorAll('.add-to-cart-form');
+        const formData = new FormData();
+
+        forms.forEach(form => {
+            const formInputs = form.querySelectorAll('input');
+            formInputs.forEach(input => {
+                formData.append(input.name, input.value);
+            });
+        });
+
+        fetch('/add-to-cart/' + typeValue + '/' + modifyValue + '/', {
+            method: 'POST',
+            body: formData,
+            // headers: {
+            //     'Origin': originURL
+            // }
+        })
+        .then(response => {
+            if (response.ok) {
+                const homeURL = "{% url 'view_cart' %}";
+                window.location.href = homeURL;}
+        });
+    }
+
+    function incrementQuantity(productId) {
+        var quantityInput = document.getElementById("id_quantity_" + productId);
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    }
+    function decrementQuantity(productId) {
+        var quantityInput = document.getElementById("id_quantity_" + productId);
+        var currentQuantity = parseInt(quantityInput.value);
+        quantityInput.value = currentQuantity > 0 ? currentQuantity - 1 : 0;
+    }
+</script>
+</body>
+</html>

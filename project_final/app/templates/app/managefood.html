@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManageFood</title>
+    <style>
+        body {
+            background-color: #f5f5f7;
+        }
+        /* ส่วน bar จัดการเมนูอาหาร */
+        .containerbody {
+            display: flex;
+            justify-content: start;
+            /* border: 1px solid red; */
+            padding: 20px;
+            margin-top: 20px;
+
+        }
+        .container {
+            width: 800px;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            background-color: #fff;
+            padding: 15px;
+            margin-left: 20px;
+            box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+
+        }
+        .managebar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        a {
+            list-style: none;
+            text-decoration: none;
+            color: black;
+        }
+        .choosedate {
+            border: 1px solid #333;
+            padding: 10px;
+
+        }
+        .addfood {
+            border: 1px solid #333;
+            padding: 10px;
+            margin-right: 20px;
+        }
+        .clearfood {
+
+            border: 1px solid #333;
+            padding: 10px;
+
+        }
+        /* block ส่วน แสดงเมนูอาหาร */
+
+        .container-area {
+            display: grid;
+            padding: 0.5rem;
+            margin: 0.5rem;
+            grid-template-columns: repeat(4,1fr);
+            grid-gap: 10px;
+            width: 1140px;
+            /* border: 1px solid red; */
+            margin: 0 auto;
+            margin-top: 5px;
+
+        }
+        .boxlistfood {
+            box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+            border-radius: 0.4rem;
+            background-color: #FDFDFD;
+            height: auto;
+            margin: 10px;
+
+
+    
+            
+        }
+        .boxlistfood div {
+            margin-top: 5px;
+            text-align: center;
+  
+            
+        }
+
+        .listitem a {
+            text-decoration: none;
+            color: black;
+
+
+        }
+        .image-food {
+            width: 100% ;
+            /* border: 1px solid blue; */
+            height: auto;
+            margin-top: 0;
+            position: relative;
+            display: inline-block;
+
+        }
+        .image-food img {
+            height: 170px; /* Set the height of the image container */
+            width: 90%; /* Set the width of the image container */
+            
+        }
+        .overlay {
+            position: absolute;
+            top: 30%;
+            left: 80%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            border-radius: 5px; 
+            width: 30px;
+}
+        .change-data {
+            background-color: greenyellow; /* Change the background color and opacity as needed */
+            display: inline-block;
+            padding: 6px;
+            width: 80px;
+            text-align: center;
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflowed text */
+            text-overflow: ellipsis;
+            color: black; /* Change the text color as needed */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px; 
+        }
+        .box-food {
+            margin-bottom: 10px;
+        }
+        .detail_food {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px;
+
+        }
+        .food-quantity {
+            margin-right: 10px;
+
+            }
+        .food-quantity2 {
+            margin-right: 10px;
+            color: #F95221;
+            }
+        .foodname {
+            text-align: center;
+            margin-top: 0px;
+        }
+        .options_sale {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-right: 10px;
+            /* border: 1px solid #333; */
+        
+        }
+        .input_q {
+            margin-bottom: 5px;
+        }
+        .label_input {
+            font-size: 14px;
+        }
+        .input_button {
+            width: 65px;
+
+        }
+        .select_button {
+            height: 22px;
+
+        }
+
+        .buttonpopup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* border: 1px solid blue; */
+
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid #000;
+            background-color: #fff;
+            padding: 20px;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+}
+        .popup-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .pop_ok {
+            background-color: #76FF76;
+            margin-right: 20px;
+            width: 60px;
+        }
+        .pop_cancel {
+            background-color: #FF7676;
+            width: 60px;
+        }
+        .box-button {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .button-submit {
+            display: flex;
+            width: 20%;
+            margin-top: 10px;
+            justify-content: center;
+
+        }
+        .btn-ok {
+
+            margin-right: 10px;
+            align-items: center;
+            background-color:#21F9F9;
+            border-radius: 12px;
+            box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+            box-sizing: border-box;
+            color: #121212;
+            cursor: pointer;
+            display: inline-flex;
+            flex: 1 1 auto;
+            font-family: Inter,sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            justify-content: center;
+            line-height: 1;
+            margin: 0;
+            outline: none;
+            padding: 1rem 1.2rem;
+            text-align: center;
+            text-decoration: none;
+            transition: box-shadow .2s,-webkit-box-shadow .2s;
+            white-space: nowrap;
+            border: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            height: auto;
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .btn-ok:hover,.btn-cancel:hover {
+        box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+        }
+        .btn-cancel {
+            width: 10px;
+            align-items: center;
+            background-color: #F95221;
+            border-radius: 12px;
+            box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+            box-sizing: border-box;
+            color: #121212;
+            cursor: pointer;
+            display: inline-flex;
+            flex: 1 1 auto;
+            font-family: Inter,sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            justify-content: center;
+            line-height: 1;
+            margin: 0;
+            outline: none;
+            padding: 1rem 1.2rem;
+            text-align: center;
+            text-decoration: none;
+            transition: box-shadow .2s,-webkit-box-shadow .2s;
+            white-space: nowrap;
+            border: 0;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            height: auto;
+            width: auto;
+            margin-left: 5px;
+        }
+        .message-alerts {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .error {   
+            display: flex;
+            width: 80%;  
+            height: 40px;
+            align-items: center;
+            justify-content: space-between;
+            color: #000000;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: #F97979;
+            border: 1px solid #F97979;
+            padding: 0 10px; 
+            box-sizing: border-box; 
+            border-radius: 0.3rem;
+        }
+        .box_error {
+            display: flex;
+            /* border: 1px solid blue; */
+            justify-content: end;
+            width: 90%;
+
+        }
+        .error .close-button {
+            cursor: pointer;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'app/navbar.html' %}
+
+    <div class="containerbody">
+        <div class="container">
+            <div class="managebar">
+                <!-- <a href="#" class="choosedate">เลือกวันที่</a> -->
+                <form action="/select_date/" method="post">
+                    {% csrf_token %}
+                    <!-- Render DateField -->
+                    <label for="id_my_date_field">เลือกวันที่</label>
+                    {{ form.date_field }}
+                    <button type="submit">OK</button>
+                </form>
+                <div class="showdate">{{thai_date}}</div>
+                <div class="rightbar">
+                    <a href="/create/" class="addfood">เพิ่มเมนูอาหาร</a>
+                    <a href="#" class="clearfood" >จบวัน</a>
+                    <div id="popup" class="popup">
+                        <div class="popup-content">
+                          <form action="/clear_food/" method="post" class="form-popup">
+                                {%csrf_token%}
+                                <p class="message">คุณแน่ใจที่จะจบการขายของวันนี้หรือไม่</p>
+                                <div class="buttonpopup">
+                                    <button class="pop_ok" type="submit">ok</button>
+                                    <button class="pop_cancel" type="button" onclick="closePopup()">cancel</button>
+                                </div>
+                          </form>
+                          
+                          <!-- You can add any content or form elements here -->
+                            <script>
+                                    document.querySelector('.clearfood').addEventListener('click', function() {
+                                        document.querySelector('.popup').style.display = 'block';
+                                    });
+                                    
+                                    document.querySelector('.pop_cancel').addEventListener('click', function() {
+                                        document.querySelector('.popup').style.display = 'none';
+                                    });
+                            </script>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if messages %}
+    <div class="message-alerts">
+        {% for message in messages %}
+            {% if message.tags == 'error' %}
+                <div class="error">
+                    <div class="box_error">
+                        {{ message }}
+                    </div>
+                    <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+                </div>
+            {% elif message.tags == 'success' %}
+                <div class="success">{{ message }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form class="submit_sales" method="post" action="/managefood/{{date}}/">
+        {%csrf_token%}
+        <div class="container-area">
+            {%for f,h in list_food %}
+                        <div class="boxlistfood">
+                            {%if f.image %}
+                            <div class="image-food">
+                                <img src="{{f.image.url}}" alt="food-image">
+                                <div class="overlay">
+                                    <a href="/updatefood/{{f.id}}/" class="change-data">แก้ไข้ข้อมูล</a>
+                                </div>
+                            </div>
+                            {%endif%}
+                            <input type="hidden" name="food_id" value="{{ f.id }}">
+                            <div class="options_sale">
+                                <div class="input_q">
+                                    <label class="label_input" for="input_button">จำนวน</label>
+                                    <input class="input_button" name="input_quantity" type="number" value='{{f.quantity_sale}}' min=0 >
+                                </div>
+                                {%if not h.options %}
+                                    <label  for="option_{{f.id}}"></label>
+                                    <select class="select_button" name="options" id="option_{{f.id}}">
+                                        {%for o in options%}
+                                        <option value="{{o}}">{{o}}</option>
+                                        {%endfor%}
+                                    </select>
+                                {%else%}
+                                    <select class="select_button" name="options" id="option_{{ f.id }}">
+                                        {% if h.options %}
+                                            <option value="{{ h.options }}">{{ h.options }}</option>
+                                        {% endif %}
+                                        {% for o in options %}
+                                            {% if o != h.options %}
+                                                <option value="{{ o }}">{{ o }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                {% endif %}
+                            </div>
+                            <div class="foodname">{{f.name}}</div> 
+                            <div class="detail_food">
+                            <div>{{f.price}} {{f.unit}}</div>
+                            {%if h.quantity%}
+                                <div class="food-quantity">คงเหลือ : {{h.quantity}}</div>
+                            {%elif h.quantity == 0 %}
+                                <div class="food-quantity2">อาหารหมด</div>
+
+                            {%endif%}
+
+                            </div>
+                        </div>
+
+            {%endfor%}
+        </div>
+        <div class="box-button">
+            <div class="button-submit">
+                <button class="btn-ok" type="submit">OK</button>
+                <a class="btn-cancel" href="/managefood/">cancel</a>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</body>
+</html>

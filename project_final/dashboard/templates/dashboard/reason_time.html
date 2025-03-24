@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reason and Time</title>
+    <style>
+.body_container {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    width: 1200px;
+    margin-left: 220px;
+}
+
+.head_reason,.head_time {
+    margin: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.list_reason ,.list_time {
+    display: grid;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 10px;
+    width: 95%;
+    /* border: 1px solid red; */
+    margin-left: 10px;
+    
+}
+.contains_reason  {
+    display: flex;
+    border: 1px solid #615E5E;
+    width: 250px;
+    height: 120px;
+    justify-content: center;
+    background-color: white;
+
+}
+.each_reason {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 95%;
+    justify-content: space-between;
+    /* border: 1px solid blue; */
+}
+.contains_time {
+    border: 1px solid #615E5E;
+    background-color: white;
+
+
+}
+.text_reason ,.use_with {
+    /* border: 1px solid blue; */
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.text_reason {
+    height: 85%;
+    margin-top: 10px;
+    border-bottom:1px solid #B9B9B9 ;
+    overflow: auto;
+}
+.box_down {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+}
+.delete_btn,.add_reason,.delete_btn2,.add_time {
+    display: flex;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    border: 1px solid #615E5E;
+    border-radius: 0.3rem;
+    background-color: #615E5E;
+    width: 40px;
+    height: 22px;
+    justify-content: center;
+    align-items: center;
+
+}
+.delete_btn:hover,.delete_btn2:hover {
+    border: 1px solid #615E5E;
+    border-radius: 0.3rem;
+    background-color: white;
+    color: black;
+}
+.add_reason,.add_time {
+    background-color: #D84D86;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+.add_reason:hover,.add_time:hover {
+    background-color: #f1f1f1;
+    color: #B9356B;
+}
+.box_add_reason,.box_add_time {
+    display: flex;
+    /* border: 1px solid #615E5E; */
+    align-items: center;
+    justify-content: center;
+    width: 96%;
+    height: 100%;
+    margin-bottom: 40px;
+}
+
+.contains_time,.box_add_time {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px;
+    height: 40px;
+}
+.text_time {
+    margin-left: 20px;
+}
+.delete_btn2 {
+    margin-right: 10px;
+}
+.box_add_time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.popup-overlay,.popup-overlay2 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .popup-content,.popup-content2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            width: 800px;
+            height: 70px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .popup-content2 {
+            width: 600px;
+        }
+        .popup-content button {
+            margin-top: 10px;
+        }
+        .btn-add {
+            border: none;
+        }
+        .reason_form {
+            display: flex;
+            justify-content: space-between;
+            width: 95%;
+            height: 95%;
+            align-items: center;
+        }
+        .box_btn {
+            display: flex;
+            height: 85%;
+            width: 110px;
+            justify-content: space-between;
+            align-items: center;
+            /* border: 1px solid #615E5E; */
+        }
+        .box_form {
+            display: flex;
+            height: 85%;
+            width: 600px;
+            justify-content: space-between;
+            align-items: center;
+            /* border: 1px solid #615E5E; */
+            margin-right: 10px;
+        }
+        .save,.close,.close2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            width: 50px;
+            cursor: pointer;
+            border-radius: 0.2rem;
+            /* border: 1px solid red; */
+
+        }
+        .btn-all,.btn-range {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .save {
+            background-color:#4A8EF1 ;
+            border: 1px solid #4A8EF1;
+
+        }
+        .save:hover {
+            background-color:#4A66F1 ;
+            border: 1px solid #4A66F1;
+        }
+
+        .close,.close2 {
+            background-color:#F1A34A ;
+            border: 1px solid #F1934A;
+
+        }
+        .close:hover,.close2:hover {
+            background-color:#F1634A ;
+            border: 1px solid #F15E4A;
+        }
+
+        input,select,label,.close {
+            margin-top: 10px;
+        }
+        .time_form {
+            display: flex;
+            width: 700px;
+            height: 85%;
+            align-items: center;
+            margin-right: 10px;
+            /* border: 1px solid red; */
+        }
+        .box_form2 {
+            width: 450px;
+            height: 85%;
+            justify-content: center;
+            align-items: center;
+            /* border: 1px solid red; */
+
+        }
+        .test_time,.input_time {
+            margin-top: 15px;
+        }
+        .test_time {
+            margin-right: 20px;
+        }
+        .box_btn2 {
+            display: flex;
+            /* border: 1px solid red; */
+            width: 120px;
+            justify-content: space-between;
+        }
+        .message-alerts {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            justify-content: center;
+            align-items: center;
+            /* border: 1px solid green;  */
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .error {   
+            display: flex;
+            position: relative;
+            width: 100%;  
+            height: 40px;
+            align-items: center;
+            justify-content: center; 
+            color: #000000; /* Dark red text color */
+            /* border: 1px solid green; */
+            font-weight: bold;
+            font-size: 18px;
+            background-color: #F97979;
+            border: 1px solid #F97979;
+            
+}
+        .close-button {
+            position: absolute;
+            right: 3%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        {% include 'Dashboard/left_bar.html' %}
+        
+        <div class="body_container">
+            {% if messages %}
+            <div class="message-alerts">
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div class="error">
+                            <div class="box_error">
+                                {{ message }}
+                            </div>
+                            <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="box_reason">
+                <div class="head_reason">
+                    รายการเหตุผลการยกเลิกออเดอร์
+                </div>
+                <div class="list_reason">
+                    {%for r in reason%}
+                    <div class="contains_reason">
+                        <div class="each_reason">
+                            <div class="text_reason">{{r.reason}}</div>
+                            <div class="box_down">
+                                <div class="use_with">{{r.use_with}}</div>
+                                <a class="delete_btn" href="{%url 'delete_reason' r.id %}"> ลบ</a>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    {%endfor%}
+                    <div class="box_add_reason">
+                            <button class="add_reason" id="openPopup">+</button>
+                            <div class="popup-overlay" id="popupOverlay">
+                                <div class="popup-content">
+        
+                                    <form method="post" action="{%url 'save_reason'%}" class="reason_form">
+                                        {%csrf_token%}
+                                        <div class="box_form">
+                                            <label for="reason">เพิ่มเหตุที่ต้องการ</label>
+                                            <input type="text" name="reason" id="reason" maxlength="100" required>
+    
+                                            <label for="use_with">ผู้ใช้ที่ต้องการเลือกใช้</label>
+                                            <select name="use_with" id="use_with" required>
+                                                <option value="admin">ผู้ดูเเลระบบ</option>
+                                                <option value="user">ผู้ใช้งาน</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="box_btn">
+                                            <button class="save" type="submit">บันทึก</button>
+                                            <a class="close" id="closePopup">ปิด</a>
+                                        </div>
+
+                                    </form>
+                        
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+            </div> 
+            <div class="box_time">
+                <div class="head_time">
+                    รายการเวลานัดออเดอร์ของสมาชิก
+                </div>
+                <div class="list_time">
+                    {%for t in time%}
+                    <div class="contains_time">
+                        <div class="text_time">{{t.time_receive}}</div>
+                        <a class="delete_btn2" href="{%url 'delete_time' t.id %}">ลบ</a>
+                    </div>
+                    {%endfor%}
+                    <div class="box_add_time">
+                        <button class="add_time" id="openPopup2">+</button>
+                        <div class="popup-overlay2" id="popupOverlay2">
+                            <div class="popup-content2">
+    
+                                <form method="post" action="{%url 'save_time'%}" class="time_form">
+                                    {%csrf_token%}
+                                    <div class="box_form2">
+                                        <label class="test_time" for="time">เพิ่มเวลานัดรับ</label>
+                                        <input class="input_time" type="text" name="time" id="time" pattern="\d{2}:\d{2} น." title="กรุณาเพิ่มเวลาถามตัวอย่างนี้ 12:00 น.">
+                                    </div>
+                                    
+                                    <div class="box_btn2">
+                                        <button class="save" type="submit">บันทึก</button>
+                                        <a class="close2" id="closePopup2">ปิด</a>
+                                    </div>
+
+                                </form>
+                    
+                            </div>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+            document.getElementById('openPopup').addEventListener('click', function() {
+                document.getElementById('popupOverlay').style.display = 'flex';
+            });
+            document.getElementById('openPopup2').addEventListener('click', function() {
+                document.getElementById('popupOverlay2').style.display = 'flex';
+            });
+            document.getElementById('closePopup').addEventListener('click', function() {
+                document.getElementById('popupOverlay').style.display = 'none';
+            });
+            document.getElementById('closePopup2').addEventListener('click', function() {
+                document.getElementById('popupOverlay2').style.display = 'none';
+            });
+    </script>
+</body>
+</html>

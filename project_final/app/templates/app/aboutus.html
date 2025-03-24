@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    body {
+            background-color: #f5f5f7;
+            
+        }
+    .body_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 700px;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        margin-top: 10px;
+    }
+    .box-map-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: end;
+
+    }
+    .map {
+        width: 100%; /* Set the width to 100% to make it fill the container */
+        height: 60px;
+        box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+        margin-bottom: 50px;
+        
+    }
+    .container-detail {
+        margin-top: 370px;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+    }
+    .box-detail {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #AFAFAF;
+        box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+        border-radius: 0.3rem;
+        padding: 30px;
+        width: 80%;
+        background-color: #FFFCFC;
+    }
+    .icon {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+    }
+
+    .follow-us {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+
+    }
+    .fb-icon img{
+        width: 65px;
+        height: 60px;
+        margin-right: 20px;
+    }
+    .line-icon img {
+        width: 52px;
+        height: 54px;
+    }
+</style>
+<body>
+    {% include 'app/navbar.html' %}
+    <div class="body_container">
+        <div class="container">
+            <div class="box-map-btn">
+                <div class="map">
+                    <iframe class="map-body" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3848.787626980221!2d104.82725936917346!3d15.2793731276176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3116881d11429d67%3A0xe1ee4f7df9ac3131!2z4Lij4LmJ4Liy4LiZIOC5gOC4iuC4qeC4kOC5jOC4geC5iuC4reC4m-C4m-C4teC5ieC5gOC4i-C4meC5gOC4leC4reC4o-C5jA!5e0!3m2!1sth!2sth!4v1707821650760!5m2!1sth!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                
+            </div>
+        </div>
+        <div class="container-detail">
+            <div class="box-detail">
+                <div class="address">
+                    <div>ที่อยู่ร้าน : ตำบล ขามใหญ่ อำเภอเมืองอุบลราชธานี อุบลราชธานี 34000</div>
+                </div>
+                <div class="phone-num">
+                    <div>เบอร์โทร : 098-619-xxxx</div>
+                </div>
+                <div class="time">
+                    <div>เวลาเปิดทำการ : 09:00 - 14:00 น.</div>
+                </div>
+                <div class="follow-us">
+                    <div>ติดตามพวกเรา</div><br>
+                    <div class="icon">
+                        <a class="fb-icon" href="https://www.facebook.com/"><img src="{%static '/images/social-facebook-icon.png'%}" alt="not found image"></a>
+                        <a class="line-icon" href="/qr_code/"><img src="{%static '/images/line.png'%}" alt="not found image"></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    
+</body>
+</html>

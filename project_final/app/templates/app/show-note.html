@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f7;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+        }
+
+        .headline-text {
+            text-align: center;
+            font-size: 24px;
+            background-color: #F94D4D;
+            color: #FFFFFF;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .box-btn-top {
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            height: 50px;
+        }
+        .head-in-box {
+            display: flex;
+            /* border: 1px solid red; */
+            justify-content: space-between;
+            width: 440px;
+            height: 40px;
+        }
+        .change-expenses,.change-income,.change-leftover,.back-calendar {
+            display: flex;
+            /* border: 1px solid red; */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            height: 35px;
+            width: 100px;
+            text-decoration: none;
+            color: #F2F2F2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0.3rem;
+        }
+        .change-leftover {
+            width: 125px;
+        }
+        .change-expenses {
+            background-color: #F94D4D;
+        }
+        .change-income {
+            background-color: #44DE49;
+        }
+        .change-leftover {
+            background-color: #6AD1F8;
+        }
+        .back-calendar {
+            background-color: #BC6AF8;
+
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #F2F2F2;
+            font-size: 18px;
+        }
+        .head_column {
+            text-align: center;
+        }
+
+        td {
+            font-size: 16px;
+            text-align: center;
+        }
+        .expenses {
+            background-color: #F94D4D;
+        }
+        .income {
+            background-color: #6AF873;
+            width: 90px;
+        }
+        .leftover {
+            background-color: #6AD1F8;
+        }
+        .name-row {
+            width: 300px;
+        }
+        .price-row {
+            width: 100px;
+        }
+        .amount-row {
+            width: 70px;
+
+        }
+        .total-all {
+            display: flex;
+            height: 60px;
+            margin-bottom: 10px;
+            text-align: right;
+            border: 1px solid #dddddd;
+            align-items: center;
+            background-color: #f2f2f2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .text-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 20px;
+            margin-right: 10px;
+            width: 120px;
+            /* border: 1px solid red; */
+        }
+        .total-expenses, .total-income {
+            display: flex;
+            /* border: 1px solid red; */
+            align-items: center;
+            width: 220px;
+            justify-content: space-between;
+        } 
+        .total-expenses-text, .total-income-text {
+            color: #FFFFFF;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .total-expenses-text {
+            background-color: #F94D4D;
+        }
+
+        .total-income-text {
+            background-color: #44DE49;
+        }
+
+        .total-expenses-num, .total-income-num {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .total-expenses-num,.total-all-negative  {
+            color: #F94D4D;
+        }
+        .total-income-num,.total-all-plus {
+            color: #44DE49;
+        }
+        .total-income {
+            margin-right: 20px;
+        } 
+        .total-all-plus, .total-all-negative {
+            font-size: 22px;
+            font-weight: bold;
+            /* border: 1px solid red; */
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        .button-box {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button-btn {
+            background-color: #3498db;
+            border: 1px solid #3498db;
+            margin-right: 10px;
+        }
+
+        .cancel-btn {
+            background-color: #F94D4D;
+            border: 1px solid #F94D4D;
+        }
+        /* Dropdown container */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown button */
+        .dropbtn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        }
+        .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+        .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+        .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+        .dropdown:hover .dropbtn {
+                background-color: #2980b9;
+            }
+
+    </style>
+</head>
+<body>
+    {% include 'app/navbar.html' %}
+    <div class="container">
+        <div class="headline-text">{{ date }}</div>
+        <div class="box-btn-top">
+            <div class="head-in-box">
+                <a class="change-income" href="/note/{{ date }}/{{income}}/">แก้ไขรายรับ</a>
+                <a class="change-expenses" href="/note/{{ date }}/{{expenses}}/">แก้ไขรายจ่าย</a>
+                <a class="change-leftover" href="/note/{{ date }}/{{leftover}}/">แก้ไขอาหารเหลือ</a>
+                <a class="back-calendar" href="/calendar/">ปฎิทิน</a>
+
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">sort by</button>
+                <div class="dropdown-content">
+                    <a href="/show_note/{{ date }}/{{income}}/">รายรับ</a>
+                    <a href="/show_note/{{ date }}/{{expenses}}/" >รายจ่าย</a>
+                    <a href="/show_note/{{ date }}/{{leftover}}/">อาหารที่เหลือ</a>
+                </div>
+            </div>
+        </div>
+        <div class="total-all">
+            <div class="text-total">สรุปยอดรวม</div>
+            <div class="total-expenses">
+                <div class="total-expenses-text">รายจ่าย</div>
+                <div class="total-expenses-num">- {{ sum_expenses|floatformat:2 }} ฿ </div>
+            </div>
+            <div class="total-income">
+                <div class="total-income-text">รายรับ</div>
+                <div class="total-income-num">+ {{ sum_income|floatformat:2 }} ฿ </div>
+            </div>
+            {% if total > 0 %}
+                <div class="total-all-plus">+{{ total }} ฿ </div>
+            {% else %}
+                <div class="total-all-negative">{{ total }} ฿ </div>
+            {% endif %}
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="head_column">ชนิด</th>
+                    <th class="head_column">ชื่อ</th>
+                    <th class="head_column">ราคา</th>
+                    <th class="head_column">จำนวน</th>
+                    <th class="head_column">รวม</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in note %}
+                    <tr>
+                        {%if e.transaction_type == 'expenses'%}
+                        <td class="expenses">รายจ่าย</td>
+                        {%endif%}
+                        {%if e.transaction_type == 'income'%}
+                        <td class="income">รายรับ</td>
+                        {%endif%}
+                        {%if e.transaction_type == 'leftover'%}
+                        <td class="leftover">อาหารที่เหลือ</td>
+                        {%endif%}
+                        <td class="name-row">{{ e.name }}</td>
+                        <td class="price-row">{{ e.price }} ฿ </td>
+                        <td class="amount-row">{{ e.amount }}</td>
+                        <td class="total">{{e.total_price}} ฿ </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- <div class="button-box">
+            <a class="button-btn" href="/note/{{ date }}/">note</a>
+            <a class="cancel-btn" href="/calendar/">Cancel</a>
+        </div> -->
+    </div>
+</body>
+</html>

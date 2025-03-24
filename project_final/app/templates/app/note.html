@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f7;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+        }
+
+        .headline-text {
+            text-align: center;
+            font-size: 24px;
+            background-color: #F94D4D;
+            color: #FFFFFF;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .box-btn-top {
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            height: 50px;
+        }
+        .head-in-box {
+            display: flex;
+            /* border: 1px solid red; */
+            justify-content: space-between;
+            width: 220px;
+            height: 40px;
+        }
+        .box-form {
+            display: flex;
+            /* border: 1px solid blue; */
+            height: 40px;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .form-input {
+            display: flex;
+            /* border: 1px solid red; */
+
+        }
+        .label-data {
+            margin-right: 10px;
+        }
+        .input-name {
+            width: 220px;
+            margin-right: 20px;
+        }
+        .input-price,.input-amount {
+            height: 20px;
+            width: 90px;
+            margin-right: 20px;
+        }
+        .box-btn-form {
+            display: flex;
+            /* border: 1px solid red; */
+            width: 130px;
+            justify-content: space-between;
+        }
+        .btn-form {
+            display: flex;
+            background-color: #3498db;
+            /* margin-left: 10px; */
+            cursor: pointer;
+            width: 60px;
+            border: 1px solid black;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .cancel-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            border: 1px solid black;
+            background-color: #F94D4D;
+            width: 60px;
+            color: white;
+        }
+        .back-note,.back-calendar {
+            display: flex;
+            /* border: 1px solid red; */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            height: 35px;
+            width: 100px;
+            text-decoration: none;
+            color: #F2F2F2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 0.3rem;
+            
+        }
+        .back-note {
+            background-color: #DE8544;
+        }
+        .back-calendar {
+            background-color: #BC6AF8;
+
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #F2F2F2;
+            font-size: 18px;
+        }
+        .head_column {
+            text-align: center;
+        }
+        td {
+            font-size: 16px;
+            text-align: center;
+        }
+        .expenses {
+            background-color: #F94D4D;
+        }
+        .income {
+            background-color: #6AF873;
+            width: 90px;
+        }
+        .name-row {
+            width: 300px;
+        }
+        .price-row {
+            width: 100px;
+        }
+        .amount-row {
+            width: 70px;
+
+        }
+        .delete-btn {
+            width: 5px;
+            /* border: 1px solid red; */
+            background-color: #F94D4D;
+
+        }
+        .delete-btn a {
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+
+        }
+        .leftover {
+            background-color: #6AD1F8;
+        }
+        .total-all {
+            display: flex;
+            height: 60px;
+            margin-bottom: 10px;
+            text-align: right;
+            justify-content: space-between;
+            border: 1px solid #dddddd;
+            align-items: center;
+            background-color: #f2f2f2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .text-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 20px;
+            margin-right: 30px;
+        }
+
+        .total-all-negative  {
+            color: #F94D4D;
+        }
+        .total-all-plus {
+            color: #44DE49;
+        }
+        .total-income {
+            margin-right: 100px;
+        }
+        .total-all-plus, .total-all-negative {
+            font-size: 26px;
+            font-weight: bold;
+            margin-right: 40px;
+        }
+
+        .button-box {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button-btn {
+            background-color: #3498db;
+            border: 1px solid #3498db;
+            margin-right: 10px;
+        }
+
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+
+        .dropbtn {
+            background-color: #3498db;
+            color: white;
+            /* padding: 10px 20px; */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            height: 35px;
+            width: 70px;
+
+        }
+        .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+        .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+        .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+        .dropdown:hover .dropbtn {
+                background-color: #2980b9;
+            }
+
+    </style>
+</head>
+<body>
+    {% include 'app/navbar.html' %}
+    <div class="container">
+        <div class="headline-text">{{ date }}</div>
+        <div class="box-btn-top">
+            <div class="head-in-box">
+                <a class="back-note" href="/show_note/{{ date }}/">สมุดบันทึก</a>
+                <a class="back-calendar" href="/calendar/">ปฎิทิน</a>
+
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">sort by</button>
+                <div class="dropdown-content">
+                    <a href="/note/{{ date }}/{{type}}/{{latest}}/">ล่าสุด</a>
+                    <a href="/note/{{ date }}/{{type}}/{{most_price}}/" >ราคามากที่สุด</a>
+                    <a href="/note/{{ date }}/{{type}}/{{most_quatity}}/">จำนวนมากที่สุด</a>
+                </div>
+            </div>
+        </div>
+        <div class="box-form">
+            <form class="form-input" action="/note/{{ date }}/{{type}}/" method="post">
+                {% csrf_token %}
+                    <label class="label-data" for="name">ชื่อ:</label><br>
+                    <input class="input-name" type="text" id="name" name="name" required><br>
+                    <input  type="hidden" name="transaction_type" value="{{type}}">
+                    <label class="label-data" for="price">ราคา:</label><br>
+                    <input  class="input-price" type="number" id="price" name="price" required><br>
+                    <label class="label-data" for="amount">จำนวน:</label><br>
+                    <input  class="input-amount" type="number" id="amount" name="amount" required><br>
+                    <div class="box-btn-form">
+                        <input class="btn-form" type="submit" value="บันทึก">
+                        <a class="cancel-btn" href="/note/{{ date }}/{{type}}/">ล้าง</a>
+                    </div>
+            </form>
+        </div>
+        {% if type != 'leftover'  %}    
+            <div class="total-all">
+                <div class="text-total">สรุปยอดรวม</div>
+                {% if type == 'income' %}
+                    <div class="total-all-plus">{{sum_income}} ฿ </div>
+                {% endif %}
+                {% if type == 'expenses' %}
+                    <div class="total-all-negative">{{sum_expenses}} ฿ </div>
+                {% endif %}
+                
+            </div>
+        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th class="head_column">ชนิด</th>
+                    <th class="head_column">ชื่อ</th>
+                    <th class="head_column">ราคา</th>
+                    <th class="head_column">จำนวน</th>
+                    <th class="head_column">รวม</th>
+                    <th class="head_column">ลบ</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in note %}
+                    <tr>
+                        {%if e.transaction_type == 'expenses'%}
+                        <td class="expenses">รายจ่าย</td>
+                        {%endif%}
+                        {%if e.transaction_type == 'income'%}
+                        <td class="income">รายรับ</td>
+                        {%endif%}
+                        {%if e.transaction_type == 'leftover'%}
+                        <td class="leftover">อาหารที่เหลือ</td>
+                        {%endif%}
+                        <td class="name-row">{{ e.name }}</td>
+                        <td class="price-row">{{ e.price }} ฿ </td>
+                        <td class="amount-row">{{ e.amount }}</td>
+                        <td class="total">{{e.total_price}} ฿ </td>
+                        <td class="delete-btn"><a href="/delete_note/{{date}}/{{type}}/{{e.id}}/">x</a></td>
+
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

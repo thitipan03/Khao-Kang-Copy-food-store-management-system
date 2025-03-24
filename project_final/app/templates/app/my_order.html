@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Kanit&subset=thai,latin' rel='stylesheet' type='text/css'>
+    <style>
+                body {
+         background-color: #f5f5f7;
+                }
+      .container {
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+      }
+      .head_title {
+        display: flex;
+        font-size: 24px;
+        width: 80%;
+        padding: 7px;
+        text-align: center;
+        /* border: 1px solid red; */
+        border-radius: 0.3rem;
+        /* background-color: #FDFDFD; */
+        margin-top: 10px;
+        justify-content: space-between;
+        align-items: center;
+        /* margin-left: 50px; */
+      }
+      .title {
+        display: flex;
+        /* border: 1px solid red; */
+        padding:10px;
+        font-family: 'Kanit', sans-serif;
+        font-size: 32px;
+        /* background-color: #FDFDFD; */
+        margin-left: 30px;
+
+      }
+      .right-bar {
+        display: flex;
+        /* border: 1px solid red; */
+        width: 220px;
+        margin-right: 50px;
+        justify-content: space-between;
+      }
+
+        .history-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #28B463;
+            color: white;
+            width: 120px;
+            height: 40px;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-size: 16px;
+            text-decoration: none;
+
+        }
+      .box-list-container {
+        /* border: 1px solid red; */
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+      }
+      .container-area {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid red; */
+        border-radius: 0.3rem;
+        width: 80%;
+        box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 20px;
+        background-color: #FDFDFD;
+        margin-bottom: 20px;
+        margin-left: 50px;
+      }
+      .head_detail_box,.body_detail,.bottom_detail {
+        margin: 5px;
+      }
+      .box_detail {
+        /* border: 1px solid blue; */
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+
+      }
+      .head_detail_box {
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid palevioletred; */
+        height: 70px;
+
+      }
+      .top_head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* border: 1px solid palevioletred; */
+        height: 50px;
+      }
+      .total_price {
+        font-size: 24px;
+      }
+      .line {
+        border-bottom: 1px solid #212122;
+        margin-bottom: 5px;
+      }
+
+      .body_detail {
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid teal; */
+
+      }
+
+      .list_detail_1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        /* border: 1px solid red; */
+      }
+
+      .box_list1,.box_list2 {
+        display: flex;
+        /* border: 1px solid teal; */
+        width: 95%;
+      }
+      .list_head,.list_tail {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        /* border: 1px solid red; */
+      }
+      .list_head {
+        width: 450px;
+      }
+      .list_tail {
+        justify-content: end;
+        margin-left: 50px;
+        width: 200px;
+        /* border: 1px solid red; */
+
+      }
+      .name {
+        width: 370px;
+        margin-right: 20px;
+        /* border: 1px solid red; */
+
+      }
+      .quatity {
+        /* border: 1px solid red; */
+        width: 100px;
+        text-align: center;
+        
+      }
+      .bottom_detail {
+        display: flex;
+        /* border: 1px solid orchid; */
+        flex-direction: column;
+        align-items: end;
+        margin-bottom: 40px;
+        font-size: 26px;
+
+      }
+      .box_line_down {
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+
+      }
+      .line_down {
+        /* border: 1px solid red; */
+        border-bottom: 1px solid #212122;
+        width: 100%;
+      }
+      .time-status {
+        display: flex;
+        /* border: 1px solid red; */
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .create-code {
+        display: flex;
+        justify-content: space-between;
+        /* border: 1px solid red; */
+        width: 100%;
+      }
+      .box-submit {
+        /* position: absolute; */
+        display: flex;
+        /* border: 1px solid tomato; */
+        width: 250px;
+        height: 50px;
+        justify-content: space-between;
+        align-items: center;
+        /* margin-top: 20px; */
+    }
+      .button-btn,.button-btn2,.button-btn3,.cancel-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 120px;
+        height: 40px;
+        border-radius: 4px;
+        text-decoration: none;
+        color: white;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 18px;
+        }
+      .button-btn {
+        border: 1px solid #3498db;
+        background-color: #3498db;
+                }
+      .button-btn2 {
+        border: 1px solid #DBB834;
+        background-color: #DBB834;
+                }
+      .button-btn3 {
+        border: 1px solid #DB34A3;
+        background-color: #DB34A3;
+        margin-left: 120px
+                }
+      .cancel-btn {
+        border: 1px solid #F94D4D;
+        background-color: #F94D4D;
+      }
+      .cancel-btn:hover {
+        border: 1px solid #F52C2C;
+        background-color: #F52C2C;
+      }
+      .popupContainer {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+}
+
+      .popup {
+          background-color: #fefefe;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 50px;
+          max-width: 90%;
+          text-align: center;
+
+      }
+      
+
+      .head_popup {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+      .form_reason {
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid orchid;  */
+        width: 300px;
+
+      }
+      .form_content {
+        display: flex;
+        flex-direction: column;
+        /* border: 1px solid red;  */
+        align-items: center;
+
+      }
+      .select_reason {
+        height: 30px;
+        width: 80%;
+        background-color: #fff;
+        margin-bottom: 20px;
+
+      }
+      .submit-popup {
+        /* border: 1px solid red;  */
+        display: flex;
+        width: 70%;
+        align-items: center;
+        justify-content: space-between;
+
+      }
+      .popupButton,.closeButton,.confirm_btn,.cancle_btn,.history-button {
+          display: flex;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+          align-items: center;
+          justify-content: center;
+      }
+      .popupButton,.closeButton {
+        width: 120px;
+        height: 40px;
+      }
+      .confirm_btn,.cancle_btn {
+        width: 80%;
+        height: 30px;
+      }
+      .confirm_btn {
+        margin-bottom: 5px;
+        background-color: #0056b3;
+        text-decoration: none;
+      }
+      .cancle_btn {
+        background-color: #FF4600;
+
+      }
+      .popupButton:hover {
+          background-color: #0056b3;
+      }
+      .popupButton {
+        background-color: #007bff;
+        margin-right: 30px;
+      }
+      .closeButton {
+        background-color: #FF4600;
+      }
+      .closeButton:hover {
+        background-color: #B32300;
+
+      }
+    </style>
+</head>
+<body>
+    {% include 'app/navbar.html' %}
+    <div class="container">
+        <div class="head_title">
+          <div class="title">ออเดอร์ของฉัน</div>
+          <div class="right-bar">
+            <a class="history-button" href="/history_order/">ประวัติการจอง</a>
+          </div>
+        </div>
+        
+        <div class="box-list-container">
+            {% for order,items,date in items %}
+            <div class="container-area">
+                <div class="box_detail">
+                  <div class="head_detail_box">
+                    <div class="top_head">
+                      <div class="head_detail">รายการอาหาที่สั่ง</div>
+                      <div class="total_price">฿ {{order.total_price}}</div>
+                    </div>
+                    <div class="down_head">
+                      <div class="line"></div>
+                    </div>
+          
+                  </div>
+                  <div class="body_detail">
+                      {% for item in items %}
+                          <div class="list_detail_1">
+                              {%if item.name %}
+                          
+                                  <div class="box_list1">
+                                  <div class="list_head">
+                                      <div class="name">{{ item.name }}</div>
+                                      <div class="quatity">x {{ item.quantity }}</div>
+                                  </div>
+                  
+                                  <div class="list_tail">
+                                      <div class="price">฿ {{ item.total_price }}</div>
+                                  </div>
+                  
+                                  </div>
+                              {%endif%}
+                          
+                              {%if item.food.name%}
+                                  <div class="box_list2">
+                                      <div class="list_head">
+                                      <div class="name">{{ item.food.name }}</div>
+                                      <div class="quatity">x {{ item.quantity }}</div>
+                                      </div>
+                      
+                                      <div class="list_tail">
+                                      <div class="price">฿ {{ item.total_price }}</div>
+                                      </div>
+                                  </div>
+                      
+                              {%endif%}
+                          </div>
+                      {% endfor %}
+          
+                  </div>
+                  
+                  <div class="bottom_detail">
+                        <div class="box_line_down">
+                            <div class="line_down"></div>
+                        </div>
+                        <div class="create-code">
+                            <div class="box-time_receive">
+                                {%for t in time%}
+                                    {%if order.time_receive  == t.time_receive %}
+                                        <div class="createtime_receive">เวลานัดรับ {{t.time_receive}} </div>
+                                    {%endif%}
+                                {%endfor%}
+
+                            </div>
+                            <div class="code">code : {{order.ref_code}}</div>
+                        </div>
+                     
+                        <div class="box_line_down">
+                            <div class="line_down"></div>
+                        </div>
+                        <div class="time-status">
+                            <div class="create">{{date}}</div>
+                            <div class="box-submit">
+                                {%if order.confirm == 'wait_to_confirm'%}
+                                    <div class="button-btn" >รอการยืนยัน</div>
+                                    <button class="cancel-btn">ยกเลิก</button>
+                                {%elif order.confirm == 'confirmed'%}
+                                    <div class="button-btn2">ยืนยันแล้ว</div>
+                                    <button class="cancel-btn">ยกเลิก</button>
+                                {%else%}
+                                    <div class="button-btn3">ถูกยกเลิก</div>
+                                {%endif%}
+                                
+                            </div>
+
+                        </div>
+                    </div>
+          
+                
+                </div>
+              </div>
+              <div class="item-popup">
+                <div id="popupContainer" class="popupContainer">
+                  <div class="popup">
+                      <div class="head_popup">
+                        เลือกเหตุผลในการยกเลิก
+                      </div>
+                      <form class="form_reason" method="post" action="/cancel_my_order/{{order.ref_code}}/">
+                        {% csrf_token %}
+                        <div class="form_content">
+                          <select class="select_reason" name="select_reason">
+                            {%for r in reason %}
+                              <option class="option_reason" value="{{e}}" >{{r.reason}}</option>
+                            </div>
+                            {%endfor%}
+                          </select>
+                          <div class="submit-popup">
+                            <button class="popupButton">ยืนยันการจอง</button>
+                            <span class="closeButton">ยกเลิก</span>
+                        </div>
+              
+                      </form>
+              
+                  </div>
+                </div>
+              </div>
+              
+            {% endfor %}
+        </div>
+      
+        
+    </div>
+
+    <script>
+      const cancelButtons = document.querySelectorAll('.cancel-btn');
+      const popupContainer = document.getElementById('popupContainer'); // Corrected
+      const closeButton = popupContainer.querySelector('.closeButton');
+  
+      cancelButtons.forEach(cancelButton => {
+          cancelButton.addEventListener('click', function() {
+              popupContainer.style.display = 'block';
+          });
+      });
+  
+      closeButton.addEventListener('click', function() {
+          popupContainer.style.display = 'none';
+      });
+  
+  </script>
+  
+</body>
+</html>
